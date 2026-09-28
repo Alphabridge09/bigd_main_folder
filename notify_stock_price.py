@@ -12,7 +12,7 @@ import requests
 from dotenv import load_dotenv
 
 # 조회할 종목코드. 지금은 여기 직접 적어 두고, 나중에 파일에서 읽어오도록 바꾼다.
-STOCK_CODE = "005930"  # 삼성전자
+STOCK_CODE = "006400"  # 삼성SDI
 
 load_dotenv()
 
@@ -31,7 +31,7 @@ def fetch_naver_current_price(code: str, retries: int = 2) -> dict:
 
     반환 dict에는 가격·등락률·장 개장 여부와 함께 그 가격이 체결된 시각("traded_at")도
     담깁니다 — 조회 시각이 아니라 체결 시각이라 저장할 거래일을 정하는 기준으로 쓸 수 있습니다."""
-    url = f"https://m.stock.naver.com/api/stock/005930/basic"
+    url = f"https://m.stock.naver.com/api/stock/{code}/basic"
     # 왜 재시도가 필요한가: 여기서 실패하면 그 종목은 이번 알림에서 통째로 빠진다. 순간적인
     # 네트워크 지연이나 일시적인 오류 때문에 그런 일이 생기는 걸 막으려고 최소한의
     # 재시도(기본 2회)를 넣었다.
